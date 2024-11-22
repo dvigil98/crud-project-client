@@ -1,0 +1,77 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="font-weight-bold">Categorías</h1>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/admin/dashboard" href="#">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Lista de categorías</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <a routerLink="/admin/categories/create" href="#" class="btn btn-light border"><i class="fas fa-plus-circle"></i> Agregar categoría</a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body py-0 px-0">
+              <div class="table-responsive">
+                <table class="table table-borderless table-striped">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>NOMBRE</th>
+                      <th>DESCRIPCIÓN</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td *ngIf="loading" class="text-center" colspan="4">
+                        <div class="spinner-border" role="status">
+                          <span class="sr-only">Loading...</span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td *ngIf="categories.length === 0 && !loading" class="text-center" colspan="4">
+                        <p>Datos no disponibles</p>
+                      </td>
+                    </tr>
+                    <tr *ngFor="let category of categories | paginate: { itemsPerPage: 10, currentPage: p }">
+                      <td class="font-weight-bold">{{ category.id }}</td>
+                      <td>{{ category.name }}</td>
+                      <td>{{ category.description }}</td>
+                      <td class="text-right">
+                        <div class="btn-group">
+                          <a routerLink="/admin/categories/{{ category.id }}" href="#" class="btn btn-light border" title="ver detalles"><i class="fas fa-info-circle"></i></a>
+                          <a routerLink="/admin/categories/{{ category.id }}/edit" href="#" class="btn btn-light border" title="Editar"><i class="fas fa-marker"></i></a>
+                          <button (click)="deleteCategory(category.id)" type="button" class="btn btn-light border" title="Eliminar"><i class="fas fa-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="row text-center">
+                <div class="col-md-12">
+                  <pagination-controls (pageChange)="p = $event" [responsive]="true" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

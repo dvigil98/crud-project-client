@@ -90,6 +90,7 @@ export class ProductEditComponent implements OnInit {
 
           this.submitted = false;
           this.form.reset();
+          this.form.get('category_id')?.setValue("");
 
           Swal.fire({
             title: '¡Exito!',

@@ -1,30 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../../../services/category.service';
-import { Category } from '../../../models/category.model';
+import { Product } from '../../../models/product.model';
+import { ProductService } from '../../../services/product.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-category-index',
-  templateUrl: './category-index.component.html',
-  styleUrl: './category-index.component.css'
+  selector: 'app-product-index',
+  templateUrl: './product-index.component.html',
+  styleUrl: './product-index.component.css'
 })
-export class CategoryIndexComponent implements OnInit {
+export class ProductIndexComponent implements OnInit {
 
   loading: boolean = true;
   p: number = 1;
-  categories: Category[] = [];
+  products: Product[] = [];
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.getCategories();
+    this.getProducts();
   }
 
-  getCategories(): void {
-    this.categoryService.getCategories().subscribe({
+  getProducts(): void {
+    this.productService.getProducts().subscribe({
       next: (r) => {
         this.loading = false;
-        this.categories = r.data;
+        this.products = r.data;
       },
       error: (e) => {
         console.log(e);
@@ -32,7 +32,7 @@ export class CategoryIndexComponent implements OnInit {
     });
   }
 
-  deleteCategory(id?: number): void {
+  deleteProduct(id?: number): void {
     Swal.fire({
       title: "¡Advertencia!",
       text: "¿Está seguro de eliminar este registro?",
@@ -45,10 +45,10 @@ export class CategoryIndexComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.categoryService.deleteCategory(Number(id)).subscribe({
+        this.productService.deleteProduct(Number(id)).subscribe({
           next: (r) => {
 
-            this.getCategories();
+            this.getProducts();
 
             Swal.fire({
               title: '¡Exito!',

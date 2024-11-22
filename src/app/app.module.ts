@@ -13,6 +13,10 @@ import { CategoryIndexComponent } from './pages/categories/category-index/catego
 import { CategoryCreateComponent } from './pages/categories/category-create/category-create.component';
 import { CategoryEditComponent } from './pages/categories/category-edit/category-edit.component';
 import { CategoryShowComponent } from './pages/categories/category-show/category-show.component';
+import { ProductIndexComponent } from './pages/products/product-index/product-index.component';
+import { ProductCreateComponent } from './pages/products/product-create/product-create.component';
+import { ProductEditComponent } from './pages/products/product-edit/product-edit.component';
+import { ProductShowComponent } from './pages/products/product-show/product-show.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { CategoryShowComponent } from './pages/categories/category-show/category
     CategoryIndexComponent,
     CategoryCreateComponent,
     CategoryEditComponent,
-    CategoryShowComponent
+    CategoryShowComponent,
+    ProductIndexComponent,
+    ProductCreateComponent,
+    ProductEditComponent,
+    ProductShowComponent
   ],
   imports: [
     BrowserModule,

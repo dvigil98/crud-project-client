@@ -29,7 +29,7 @@ export class CategoryService {
     return this.http.put<Response>(`${this.baseUrl}/categories/${id}`, category, { headers: this.getHeaders() });
   }
 
-  deleteCategory(id?: number): Observable<Response> {
+  deleteCategory(id: number): Observable<Response> {
     return this.http.delete<Response>(`${this.baseUrl}/categories/${id}`, { headers: this.getHeaders() });
   }
 

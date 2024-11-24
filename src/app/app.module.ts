@@ -17,6 +17,7 @@ import { ProductIndexComponent } from './pages/products/product-index/product-in
 import { ProductCreateComponent } from './pages/products/product-create/product-create.component';
 import { ProductEditComponent } from './pages/products/product-edit/product-edit.component';
 import { ProductShowComponent } from './pages/products/product-show/product-show.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ProductShowComponent } from './pages/products/product-show/product-show
     ProductIndexComponent,
     ProductCreateComponent,
     ProductEditComponent,
-    ProductShowComponent
+    ProductShowComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

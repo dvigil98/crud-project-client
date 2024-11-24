@@ -10,9 +10,14 @@ import Swal from 'sweetalert2';
 })
 export class ProductIndexComponent implements OnInit {
 
-  loading: boolean = true;
   p: number = 1;
   products: Product[] = [];
+
+  searchBy: any[] = [
+    { value: 'products.code', text: 'Código' },
+    { value: 'products.name', text: 'Nombre' },
+    { value: 'categories.name', text: 'Categoría' }
+  ];
 
   constructor(private productService: ProductService) { }
 
@@ -23,7 +28,6 @@ export class ProductIndexComponent implements OnInit {
   getProducts(): void {
     this.productService.getProducts().subscribe({
       next: (r) => {
-        this.loading = false;
         this.products = r.data;
       },
       error: (e) => {
@@ -70,5 +74,20 @@ export class ProductIndexComponent implements OnInit {
         });
       }
     });
+  }
+
+  searchProducts(searchData: any): void {
+    this.productService.searchProducts(searchData.critery, searchData.value).subscribe({
+      next: (r) => {
+        this.products = r.data;
+      },
+      error: (e) => {
+        console.log(e);
+      }
+    });
+  }
+
+  clear(): void {
+    this.getProducts();
   }
 }

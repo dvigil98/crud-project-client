@@ -10,9 +10,12 @@ import Swal from 'sweetalert2';
 })
 export class CategoryIndexComponent implements OnInit {
 
-  loading: boolean = true;
   p: number = 1;
   categories: Category[] = [];
+
+  searchBy: any[] = [
+    { value: 'name', text: 'Nombre' }
+  ];
 
   constructor(private categoryService: CategoryService) { }
 
@@ -23,7 +26,6 @@ export class CategoryIndexComponent implements OnInit {
   getCategories(): void {
     this.categoryService.getCategories().subscribe({
       next: (r) => {
-        this.loading = false;
         this.categories = r.data;
       },
       error: (e) => {
@@ -70,5 +72,20 @@ export class CategoryIndexComponent implements OnInit {
         });
       }
     });
+  }
+
+  searchCategories(searchData: any): void {
+    this.categoryService.searchCategories(searchData.critery, searchData.value).subscribe({
+      next: (r) => {
+        this.categories = r.data;
+      },
+      error: (e) => {
+        console.log(e);
+      }
+    });
+  }
+
+  clear(): void {
+    this.getCategories();
   }
 }

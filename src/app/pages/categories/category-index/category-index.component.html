@@ -15,10 +15,13 @@
   <section class="content">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
           <div class="form-group">
             <a routerLink="/admin/categories/create" href="#" class="btn btn-light border"><i class="fas fa-plus-circle"></i> Agregar categoría</a>
           </div>
+        </div>
+        <div class="col-md-6">
+          <app-search [searchBy]="searchBy" (searchEvent)="searchCategories($event)" (clearEvent)="clear()"></app-search>
         </div>
       </div>
       <div class="row">
@@ -36,15 +39,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <!-- <tr>
-                      <td *ngIf="loading" class="text-center" colspan="4">
-                        <div class="spinner-border" role="status">
-                          <span class="sr-only">Loading...</span>
-                        </div>
-                      </td>
-                    </tr> -->
                     <tr>
-                      <td *ngIf="categories.length === 0 && !loading" class="text-center" colspan="4">
+                      <td *ngIf="categories.length === 0" class="text-center" colspan="4">
                         <p>Datos no disponibles</p>
                       </td>
                     </tr>

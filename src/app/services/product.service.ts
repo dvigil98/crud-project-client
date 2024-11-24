@@ -33,6 +33,10 @@ export class ProductService {
     return this.http.delete<Response>(`${this.baseUrl}/products/${id}`, { headers: this.getHeaders() });
   }
 
+  searchProducts(critery: string, value: string): Observable<Response> {
+    return this.http.get<Response>(`${this.baseUrl}/products/${critery}/${value}/search`, { headers: this.getHeaders() });
+  }
+
   private getHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Accept': 'application/json',
